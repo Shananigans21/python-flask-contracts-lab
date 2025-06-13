@@ -1,149 +1,50 @@
-# Lab: Contractors Lab
+# Flask Contracts API
+
+This project is a simple Flask web application that demonstrates building dynamic routes and handling HTTP status codes. It includes routes to retrieve contract and customer information.
 
 ---
 
-## Overview
+## Routes
 
-Now it is time for you to build your own request responses!
+###  `GET /contracts/<int:id>`
+- **Description**: Fetches contract information by contract ID.
+- **Response**:
+  - `200 OK`: If the contract is found, returns the contract details as JSON.
+  - `404 Not Found`: If no contract is found for the given ID.
 
-You are working for a company that manages contracts between two parties. You need to manage sensitive data, and as such, you need to build two requests:
+**Example**:
 
-- One for **customer information**
-- One for **contract information**
+GET /contracts/1
+Response: {
+"contract": {
+"id": 1,
+"contract_information": "This contract is for John and building a shed"
+}
+}
 
-You will be using two new response codes:
-
-- **204**: Successful response but no data to send (e.g., confirming a customer exists without sharing data).
-- **404**: Not found — we cannot find the requested data.
-
----
-
-## Tasks
-
-### Task 1: Define the Problem
-
-Build the following routes:
-
-- `/contract/<id>`
-- `/customer/<customer_name>`
 
 ---
 
-### Task 2: Determine the Design
+###  `GET /customers/<customer_name>`
+- **Description**: Checks if a customer exists in the system.
+- **Response**:
+  - `204 No Content`: If the customer is found.
+  - `404 Not Found`: If the customer is not found.
 
-#### App Routes:
+**Example**:
+GET /customers/bob
+Response: [Blank page with 204 status]
 
-- `GET /contract/<id>`
-  - **200**: Contract found — return contract information.
-  - **404**: Contract not found.
-
-- `GET /customer/<customer_name>`
-  - **204**: Customer found — no information returned (sensitive).
-  - **404**: Customer not found.
-
----
-
-### Task 3: Develop the Code
-
-- Initialize Flask
-- Set up routes
-- Configure responses
 
 ---
 
-### Task 4: Test and Refine
+##  Getting Started
 
-- Debug and test during development using the provided test suite and Flask instance.
+### Prerequisites
+- Python 3 installed
+- Flask installed
 
----
-
-### Task 5: Document and Maintain
-
-- Commit as you go with meaningful messages.
-- Push commit history to GitHub periodically and when the lab is complete.
-
----
-
-## Tools and Resources
-
-- **GitHub Repo**: *Link to be provided*
-- **Flask Quickstart**: [https://flask.palletsprojects.com/en/stable/quickstart/](https://flask.palletsprojects.com/en/stable/quickstart/)
-
----
-
-## Instructions
-
-### Set Up
-
-Before coding:
-
-1. **Fork and Clone**
-   - Go to the provided GitHub repository link.
-   - Fork the repository to your GitHub account.
-   - Clone the forked repository to your local machine.
-
-2. **Open and Run**
-   - Open the project in VSCode.
-   - Run `pipenv install` to install dependencies.
-   - Run `pipenv shell` to activate the Python shell.
-
----
-
-### Task 1: Define the Problem
-
-Build the following routes:
-
-- `/contract/<id>`
-- `/customer/<customer_name>`
-
----
-
-### Task 2: Determine the Design
-
-#### App Routes:
-
-- `/contract/<id>`
-  - **200**: Contract found — return information
-  - **404**: Contract not found
-
-- `/customer/<customer_name>`
-  - **204**: Customer found — return no information
-  - **404**: Customer not found
-
----
-
-### Task 3: Develop, Test, and Refine the Code
-
-1. Create a **feature branch**.
-2. Build the following routes:
-
-#### `/contract/<id>`
-
-- If the contract ID is found in the given array:
-  - Return contract information with a **200** response.
-- If not found:
-  - Return a **404** response.
-
-#### `/customer/<customer_name>`
-
-- If the customer name is found:
-  - Return a **204** response with an empty body.
-- If not found:
-  - Return a **404** response.
-
-3. Push the feature branch and open a PR on GitHub.
-4. Merge into `main`.
-
----
-
-### Task 4: Document and Maintain
-
-#### Best Practices:
-
-- Add comments to explain logic and purpose.
-- Clarify code intent for other developers.
-- Include a screenshot of completed work in the README.
-- Update the README to reflect functionality using [https://makeareadme.com](https://makeareadme.com).
-- Delete stale branches on GitHub.
-- Remove unnecessary or commented-out code.
-- Update `.gitignore` if needed to exclude sensitive data
+### Run the app:
+```bash
+export FLASK_APP=app.py
+python3 app.py
